@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
 
   has_many :posts, dependent: :destroy
+  has_many :reactions, dependent: :destroy
 
   def full_name
     if first_name.present? && last_name.present?

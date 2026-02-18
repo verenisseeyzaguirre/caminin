@@ -8,10 +8,20 @@
 
 <% @posts.each do |post| %>
   <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px;">
+    <% if current_user&.admin? %>
+      <%= button_to "Eliminar", post_path(post), method: :delete, data: { turbo_confirm: "¿Estás segura?" } %>
+    <% end %>
+    
+
     <strong><%= post.title %></strong>
     <p><%= post.content %></p>
     <small>
       Por <%= post.user.first_name %> <%= post.user.last_name %>
     </small>
+    <% if user_signed_in? %>
+      <%= button_to "🌱", post_reactions_path(post, kind: "seed"), method: :post %>
+      <%= button_to "💪", post_reactions_path(post, kind: "strength"), method: :post %>
+      <%= button_to "🍀", post_reactions_path(post, kind: "clover"), method: :post %>
+    <% end %>
   </div>
 <% end %>

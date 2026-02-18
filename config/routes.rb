@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reactions/create'
+  get 'reactions/destroy'
   devise_for :users
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :posts do
+    resources :reactions, only: [:create, :destroy]
     collection do
       get :mine
     end
