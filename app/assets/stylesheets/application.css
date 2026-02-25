@@ -174,14 +174,36 @@ body {
 
 .camino-card-tag {
   display: inline-block;
-  background: var(--camino-green-light);
-  color: var(--camino-green-deep);
   padding: 4px 10px;
   border-radius: var(--camino-radius-sm);
   font-size: 0.8rem;
   font-weight: 500;
   margin-left: 8px;
   vertical-align: middle;
+  /* fallback si añades nuevas etiquetas */
+  background: var(--camino-border);
+  color: var(--camino-gray);
+}
+
+/* Variantes por etiqueta — paleta Camino_n, tonos suaves */
+.camino-card-tag--frase {
+  background: var(--camino-sand);
+  color: #5a554e;
+}
+
+.camino-card-tag--aprendizaje {
+  background: var(--camino-green-light);
+  color: var(--camino-green-deep);
+}
+
+.camino-card-tag--compartir {
+  background: var(--camino-green);
+  color: var(--camino-bg);
+}
+
+.camino-card-tag--proyecto {
+  background: var(--camino-green-deep);
+  color: var(--camino-bg);
 }
 
 .camino-card-content {

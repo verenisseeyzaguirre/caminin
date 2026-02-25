@@ -12,6 +12,12 @@ module PostsHelper
     tag.to_s.humanize
   end
 
+  # Clase CSS para diferenciar cada etiqueta (colores dentro de la paleta Camino_n)
+  def tag_css_class(tag)
+    return "" if tag.blank?
+    "camino-card-tag--#{tag}"
+  end
+
   def reaction_labels
     { "seed" => "🌱", "strength" => "💪", "clover" => "🍀" }.freeze
   end

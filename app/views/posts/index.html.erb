@@ -25,7 +25,7 @@
     <h2 class="camino-card-title">
       <%= post.title %>
       <% if post.tag.present? %>
-        <span class="camino-card-tag"><%= tag_label(post.tag) %></span>
+        <span class="camino-card-tag <%= tag_css_class(post.tag) %>"><%= tag_label(post.tag) %></span>
       <% end %>
     </h2>
     <p class="camino-card-content"><%= post.content %></p>
