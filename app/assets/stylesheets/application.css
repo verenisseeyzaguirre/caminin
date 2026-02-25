@@ -46,3 +46,8 @@ body {
 .reaction-menu {
   display: flex;
 }
+
+/* Oculto gana cuando el menú tiene ambas clases */
+.reaction-menu.hidden {
+  display: none;
+}
