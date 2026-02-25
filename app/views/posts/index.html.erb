@@ -1,37 +1,37 @@
-<h1>🌿 Camino_n</h1>
+<nav class="camino-tabs">
+  <%= link_to "Todos", posts_path, class: (@listing == :all ? "is-active" : "") %>
+  <%= link_to "Mis avances", mine_posts_path, class: (@listing == :mine ? "is-active" : "") %>
+  <%= link_to "Nuevo avance", new_post_path %>
+</nav>
 
-<div style="margin-bottom: 20px;">
-  <%= link_to "Todos los posts", posts_path %> |
-  <%= link_to "Mis posts", mine_posts_path %> |
-  <%= link_to "Nuevo post", new_post_path %>
-</div>
-
-<div style="margin-bottom: 16px;">
-  <strong>Filtrar por etiqueta:</strong>
+<div class="camino-filters">
+  <strong>Etiqueta:</strong>
   <% active = params[:tag].blank? %>
-  <%= link_to "Todas", posts_path_for_listing, style: "margin-right: 8px; font-weight: #{active ? 'bold' : 'normal'};" %>
+  <%= link_to "Todas", posts_path_for_listing, class: (active ? "is-active" : "") %>
   <% Post::TAGS.each do |tag| %>
     <% active_tag = params[:tag] == tag %>
-    <%= link_to tag_label(tag), posts_path_for_listing(tag), style: "margin-right: 8px; font-weight: #{active_tag ? 'bold' : 'normal'};" %>
+    <%= link_to tag_label(tag), posts_path_for_listing(tag), class: (active_tag ? "is-active" : "") %>
   <% end %>
 </div>
 
 <% @posts.each do |post| %>
-  <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px;">
+  <article class="camino-card">
     <% if current_user&.admin? %>
-      <%= button_to "Eliminar", post_path(post), method: :delete, data: { turbo_confirm: "¿Estás segura?" } %>
+      <div class="camino-card-actions">
+        <%= button_to "Eliminar", post_path(post), method: :delete, data: { turbo_confirm: "¿Estás segura?" }, class: "camino-btn-ghost" %>
+      </div>
     <% end %>
-    
 
-    <strong><%= post.title %></strong>
-    <% if post.tag.present? %>
-      <span style="background: #e8f5e9; padding: 2px 8px; border-radius: 6px; font-size: 0.85em;"><%= tag_label(post.tag) %></span>
-    <% end %>
-    <p><%= post.content %></p>
-    <small>
-      Por <%= post.user.first_name %> <%= post.user.last_name %>
-    </small>
-    <div style="margin-top: 8px;">
+    <h2 class="camino-card-title">
+      <%= post.title %>
+      <% if post.tag.present? %>
+        <span class="camino-card-tag"><%= tag_label(post.tag) %></span>
+      <% end %>
+    </h2>
+    <p class="camino-card-content"><%= post.content %></p>
+    <p class="camino-card-author">Por <%= post.user.first_name %> <%= post.user.last_name %></p>
+
+    <div class="camino-card-reactions">
       <% counts = reaction_counts(post) %>
       <% if counts.any? %>
         <span class="reaction-counters">
@@ -43,27 +43,21 @@
         </span>
       <% end %>
       <% if user_signed_in? %>
-        <div data-controller="reactions" style="position: relative; display: inline-block; margin-left: 8px;">
-
+        <div data-controller="reactions" style="position: relative; display: inline-block;">
           <button type="button"
                   data-action="click->reactions#toggle"
-                  style="background: none; border: none; font-size: 20px; cursor: pointer;">
+                  class="camino-reaction-trigger"
+                  aria-label="Reaccionar">
             ✨
           </button>
-
           <div data-reactions-target="menu"
-            class="hidden reaction-menu"
-            style="position: absolute; bottom: 30px; background: white; padding: 8px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); gap: 10px;">
-
-
-            <%= button_to "🌱", post_reactions_path(post, kind: "seed"), method: :post, style: "background: none; border: none;" %>
-            <%= button_to "💪", post_reactions_path(post, kind: "strength"), method: :post, style: "background: none; border: none;" %>
-            <%= button_to "🍀", post_reactions_path(post, kind: "clover"), method: :post, style: "background: none; border: none;" %>
-
+               class="hidden reaction-menu">
+            <%= button_to "🌱", post_reactions_path(post, kind: "seed"), method: :post %>
+            <%= button_to "💪", post_reactions_path(post, kind: "strength"), method: :post %>
+            <%= button_to "🍀", post_reactions_path(post, kind: "clover"), method: :post %>
           </div>
         </div>
       <% end %>
     </div>
-
-  </div>
+  </article>
 <% end %>

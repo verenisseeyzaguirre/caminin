@@ -1,22 +1,26 @@
-<h2>Nuevo post 🌱</h2>
+<nav class="camino-tabs">
+  <%= link_to "Todos", posts_path %>
+  <%= link_to "Mis avances", mine_posts_path %>
+  <%= link_to "Nuevo avance", new_post_path, class: "is-active" %>
+</nav>
 
-<%= form_with model: @post do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+<h1 class="camino-page-title">Nuevo avance 🌱</h1>
+
+<%= form_with model: @post, class: "camino-form" do |form| %>
+  <div class="field">
+    <%= form.label :title, "Título" %>
+    <%= form.text_field :title, placeholder: "Un pequeño avance..." %>
   </div>
 
-  <div>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
+  <div class="field">
+    <%= form.label :content, "Contenido" %>
+    <%= form.text_area :content, placeholder: "Comparte aquí..." %>
   </div>
 
-  <div>
-    <%= form.label :tag, "Etiqueta" %><br>
+  <div class="field">
+    <%= form.label :tag, "Etiqueta" %>
     <%= form.select :tag, options_for_select(Post::TAGS.map { |t| [tag_label(t), t] }, @post.try(:tag)), { include_blank: "Sin etiqueta" } %>
   </div>
-
-  <br>
 
   <%= form.submit "Publicar" %>
 <% end %>

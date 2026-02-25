@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
-    <title>Caminin</title>
+    <title>Camino_n</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <p>Hola <%= current_user.full_name %></p>
-      <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete } %>
-    <% else %>
-      <%= link_to "Iniciar sesión", new_user_session_path %> |
-      <%= link_to "Registrarse", new_user_registration_path %>
-    <% end %>
+    <div class="camino-wrap">
+      <header class="camino-header">
+        <%= link_to "🌿 Camino_n", root_path, class: "camino-logo" %>
+        <div class="camino-user">
+          <% if user_signed_in? %>
+            Hola, <%= current_user.first_name.presence || current_user.email %> —
+            <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete } %>
+          <% else %>
+            <%= link_to "Iniciar sesión", new_user_session_path %> —
+            <%= link_to "Registrarse", new_user_registration_path %>
+          <% end %>
+        </div>
+      </header>
 
-    <hr>
-
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
