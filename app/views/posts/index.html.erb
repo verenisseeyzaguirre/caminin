@@ -31,27 +31,39 @@
     <small>
       Por <%= post.user.first_name %> <%= post.user.last_name %>
     </small>
-    <% if user_signed_in? %>
-      <div data-controller="reactions" style="position: relative; display: inline-block;">
+    <div style="margin-top: 8px;">
+      <% counts = reaction_counts(post) %>
+      <% if counts.any? %>
+        <span class="reaction-counters">
+          <% %w[seed strength clover].each do |kind| %>
+            <% n = counts[kind].to_i %>
+            <% next if n.zero? %>
+            <span title="<%= kind.humanize %>"><%= reaction_labels[kind] %> <%= n %></span>
+          <% end %>
+        </span>
+      <% end %>
+      <% if user_signed_in? %>
+        <div data-controller="reactions" style="position: relative; display: inline-block; margin-left: 8px;">
 
-        <button type="button"
-                data-action="click->reactions#toggle"
-                style="background: none; border: none; font-size: 20px; cursor: pointer;">
-          ✨
-        </button>
+          <button type="button"
+                  data-action="click->reactions#toggle"
+                  style="background: none; border: none; font-size: 20px; cursor: pointer;">
+            ✨
+          </button>
 
-        <div data-reactions-target="menu"
-          class="hidden reaction-menu"
-          style="position: absolute; bottom: 30px; background: white; padding: 8px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); gap: 10px;">
+          <div data-reactions-target="menu"
+            class="hidden reaction-menu"
+            style="position: absolute; bottom: 30px; background: white; padding: 8px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); gap: 10px;">
 
 
-          <%= button_to "🌱", post_reactions_path(post, kind: "seed"), method: :post, style: "background: none; border: none;" %>
-          <%= button_to "💪", post_reactions_path(post, kind: "strength"), method: :post, style: "background: none; border: none;" %>
-          <%= button_to "🍀", post_reactions_path(post, kind: "clover"), method: :post, style: "background: none; border: none;" %>
+            <%= button_to "🌱", post_reactions_path(post, kind: "seed"), method: :post, style: "background: none; border: none;" %>
+            <%= button_to "💪", post_reactions_path(post, kind: "strength"), method: :post, style: "background: none; border: none;" %>
+            <%= button_to "🍀", post_reactions_path(post, kind: "clover"), method: :post, style: "background: none; border: none;" %>
 
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
   </div>
 <% end %>

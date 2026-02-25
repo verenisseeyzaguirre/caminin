@@ -43,6 +43,11 @@ body {
   display: none;
 }
 
+.reaction-counters span {
+  margin-right: 10px;
+  font-size: 0.95em;
+}
+
 .reaction-menu {
   display: flex;
 }

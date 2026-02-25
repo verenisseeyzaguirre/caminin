@@ -11,4 +11,12 @@ module PostsHelper
     return "Sin etiqueta" if tag.blank?
     tag.to_s.humanize
   end
+
+  def reaction_labels
+    { "seed" => "🌱", "strength" => "💪", "clover" => "🍀" }.freeze
+  end
+
+  def reaction_counts(post)
+    post.reactions.group_by(&:kind).transform_values(&:count)
+  end
 end

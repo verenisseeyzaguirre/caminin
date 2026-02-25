@@ -3,13 +3,13 @@ class PostsController < ApplicationController
 
   def index
     @listing = :all
-    @posts = Post.includes(:user).order(created_at: :desc)
+    @posts = Post.includes(:user, :reactions).order(created_at: :desc)
     @posts = @posts.where(tag: params[:tag]) if params[:tag].present?
   end
 
   def mine
     @listing = :mine
-    @posts = current_user.posts.order(created_at: :desc)
+    @posts = current_user.posts.includes(:reactions).order(created_at: :desc)
     @posts = @posts.where(tag: params[:tag]) if params[:tag].present?
     render :index
   end
