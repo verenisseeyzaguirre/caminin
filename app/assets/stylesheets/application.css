@@ -38,3 +38,11 @@ body {
   color: #555;
   letter-spacing: 1px;
 }
+
+.hidden {
+  display: none;
+}
+
+.reaction-menu {
+  display: flex;
+}

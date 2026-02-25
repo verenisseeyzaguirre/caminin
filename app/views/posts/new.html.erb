@@ -11,6 +11,11 @@
     <%= form.text_area :content %>
   </div>
 
+  <div>
+    <%= form.label :tag, "Etiqueta" %><br>
+    <%= form.select :tag, options_for_select(Post::TAGS.map { |t| [tag_label(t), t] }, @post.try(:tag)), { include_blank: "Sin etiqueta" } %>
+  </div>
+
   <br>
 
   <%= form.submit "Publicar" %>
