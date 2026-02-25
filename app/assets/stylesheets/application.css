@@ -262,24 +262,39 @@ body {
   transform: scale(1.15);
 }
 
-/* Botón eliminar (admin) */
+/* Botón eliminar (admin) — esquina de la card */
+.camino-card {
+  position: relative;
+}
+
 .camino-card-actions {
-  margin-bottom: 12px;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  margin: 0;
 }
 
-.camino-btn-ghost {
-  background: none;
-  border: none;
+.camino-btn-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--camino-border);
+  border-radius: 50%;
   color: var(--camino-gray);
-  font-size: 0.85rem;
+  font-size: 1.1rem;
+  line-height: 1;
   cursor: pointer;
-  padding: 4px 8px;
-  text-decoration: underline;
-  transition: color var(--camino-transition);
+  transition: color var(--camino-transition), border-color var(--camino-transition), background var(--camino-transition);
 }
 
-.camino-btn-ghost:hover {
+.camino-btn-remove:hover {
   color: var(--camino-green-deep);
+  border-color: var(--camino-sand);
+  background: rgba(247, 245, 242, 0.8);
 }
 
 /* ========== Formularios ========== */

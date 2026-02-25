@@ -18,7 +18,7 @@
   <article class="camino-card">
     <% if current_user&.admin? %>
       <div class="camino-card-actions">
-        <%= button_to "Eliminar", post_path(post), method: :delete, data: { turbo_confirm: "¿Estás segura?" }, class: "camino-btn-ghost" %>
+        <%= button_to "×", post_path(post), method: :delete, data: { turbo_confirm: "¿Estás segura?" }, class: "camino-btn-remove", title: "Eliminar" %>
       </div>
     <% end %>
 
