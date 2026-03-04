@@ -1,4 +1,31 @@
-<div class="center">
-  <p class="seed">🌱</p>
-  <p class="text">En progreso</p>
-</div>
+<section class="camino-hero">
+  <p class="camino-hero-icon">🌱</p>
+  <p class="camino-hero-text">Un espacio para compartir avances pequeños.</p>
+</section>
+
+<section class="camino-proyectos">
+  <h2 class="camino-section-title">Proyectos</h2>
+  <div class="camino-proyectos-grid">
+    <%= link_to posts_path, class: "camino-project-card" do %>
+      <span class="camino-project-card-image">
+        <%= image_tag "avances.svg", alt: "", class: "camino-project-img", loading: "lazy" %>
+      </span>
+      <span class="camino-project-card-body">
+        <h3 class="camino-project-card-title">Avances</h3>
+        <p class="camino-project-card-desc">Comparte tus pequeños pasos, etiqueta por tipo (frase, aprendizaje, compartir, proyecto) y recibe reacciones de la comunidad. Diario compartido en calma.</p>
+        <span class="camino-project-card-link">Entrar al proyecto →</span>
+      </span>
+    <% end %>
+
+    <a href="#" class="camino-project-card">
+      <span class="camino-project-card-image">
+        <%= image_tag "proyectos.svg", alt: "", class: "camino-project-img", loading: "lazy" %>
+      </span>
+      <span class="camino-project-card-body">
+        <h3 class="camino-project-card-title">Más proyectos</h3>
+        <p class="camino-project-card-desc">Otros espacios de Camino_n en construcción. Próximamente.</p>
+        <span class="camino-project-card-link">Próximamente</span>
+      </span>
+    </a>
+  </div>
+</section>

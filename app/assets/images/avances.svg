@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none">
+  <rect width="400" height="240" fill="#F7F5F2"/>
+  <rect x="80" y="100" width="240" height="120" rx="12" fill="#E6E2DD"/>
+  <path d="M120 160 L160 120 L200 140 L280 80 L320 100" stroke="#7C9A7A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="120" cy="160" r="8" fill="#A8C3A0"/>
+  <circle cx="200" cy="140" r="8" fill="#7C9A7A"/>
+  <circle cx="320" cy="100" r="8" fill="#5F7D5C"/>
+  <text x="200" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#6E6A66">Avances</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none">
+  <rect width="400" height="240" fill="#F7F5F2"/>
+  <rect x="60" y="50" width="120" height="140" rx="8" fill="#FFFFFF" stroke="#E6E2DD" stroke-width="1"/>
+  <rect x="75" y="65" width="90" height="8" rx="4" fill="#E6E2DD"/>
+  <rect x="75" y="85" width="70" height="6" rx="3" fill="#E6E2DD"/>
+  <rect x="75" y="100" width="80" height="6" rx="3" fill="#E6E2DD"/>
+  <rect x="220" y="50" width="120" height="140" rx="8" fill="#FFFFFF" stroke="#E6E2DD" stroke-width="1"/>
+  <rect x="235" y="65" width="90" height="8" rx="4" fill="#A8C3A0"/>
+  <rect x="235" y="85" width="70" height="6" rx="3" fill="#E6E2DD"/>
+  <rect x="235" y="100" width="80" height="6" rx="3" fill="#E6E2DD"/>
+  <circle cx="280" cy="170" r="24" fill="#7C9A7A" opacity="0.3"/>
+  <circle cx="280" cy="170" r="16" fill="#7C9A7A"/>
+  <text x="200" y="220" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#6E6A66">Proyectos</text>
+</svg>

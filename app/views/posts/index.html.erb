@@ -28,7 +28,28 @@
         <span class="camino-card-tag <%= tag_css_class(post.tag) %>"><%= tag_label(post.tag) %></span>
       <% end %>
     </h2>
-    <p class="camino-card-content"><%= post.content %></p>
+    <div class="camino-card-content">
+      <% content_blocks(post.content).each do |block| %>
+        <% if block[:type] == :text %>
+          <div class="camino-card-text"><%= simple_format(h(block[:content])) %></div>
+        <% elsif block[:type] == :youtube %>
+          <a href="<%= block[:url] %>" target="_blank" rel="noopener noreferrer" class="camino-link-preview camino-link-preview--youtube">
+            <span class="camino-link-preview-thumb">
+              <%= image_tag block[:thumbnail_url], alt: "Vídeo de YouTube", class: "camino-thumb-img", loading: "lazy" %>
+              <span class="camino-link-preview-badge" aria-hidden="true">▶</span>
+            </span>
+            <span class="camino-link-preview-label">Ver en YouTube</span>
+          </a>
+        <% elsif block[:type] == :instagram %>
+          <a href="<%= block[:url] %>" target="_blank" rel="noopener noreferrer" class="camino-link-preview camino-link-preview--instagram">
+            <span class="camino-link-preview-icon" aria-hidden="true">📷</span>
+            <span class="camino-link-preview-label">Ver en Instagram</span>
+          </a>
+        <% else %>
+          <a href="<%= block[:url] %>" target="_blank" rel="noopener noreferrer" class="camino-link-preview camino-link-preview--link"><%= block[:url] %></a>
+        <% end %>
+      <% end %>
+    </div>
     <p class="camino-card-author">Por <%= post.user.first_name %> <%= post.user.last_name %></p>
 
     <div class="camino-card-reactions">
